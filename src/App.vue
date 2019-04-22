@@ -8,6 +8,10 @@
                 <el-menu-item index="/about">
                     About
                 </el-menu-item>
+                <el-menu-item index="/cart">
+                    Cart
+                </el-menu-item>
+
             </el-menu>
             <!--<router-link to="/">Home</router-link> |-->
             <!--<router-link to="/about">About</router-link>-->

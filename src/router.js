@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Products from "./components/Products.vue";
+import Products from './components/Products.vue';
+import Cart from './components/Cart.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
             path: '/:id/products',
             name: 'products',
             component: Products
+        },
+        {
+            path: '/cart',
+            name: 'cart',
+            component: Cart
         },
         {
             path: '/about',

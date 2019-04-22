@@ -1,8 +1,7 @@
 <template>
     <el-container id="app">
         <el-header>
-            <el-menu mode="horizontal" router="true">
-            <!--<el-menu mode="horizontal">-->
+            <el-menu :router="true" mode="horizontal" >
                 <el-menu-item index="/">
                     Home
                 </el-menu-item>
@@ -10,16 +9,11 @@
                     About
                 </el-menu-item>
             </el-menu>
+            <!--<router-link to="/">Home</router-link> |-->
+            <!--<router-link to="/about">About</router-link>-->
         </el-header>
         <router-view/>
     </el-container>
-  <!--<div id="app">-->
-
-    <!--<div id="nav">-->
-     <!---->
-    <!--</div>-->
-
-  <!--</div>-->
 </template>
 
 <style>

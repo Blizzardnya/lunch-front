@@ -3,13 +3,14 @@
         <el-header>
             <el-menu :router="true" mode="horizontal" >
                 <el-menu-item index="/">
-                    Home
+                    Кафе
                 </el-menu-item>
                 <el-menu-item index="/about">
-                    About
+                    О нас
                 </el-menu-item>
                 <el-menu-item index="/cart">
-                    Cart
+                    <i class="el-icon-goods"></i>
+                    Корзина ({{cartCounts}})
                 </el-menu-item>
 
             </el-menu>
@@ -19,6 +20,16 @@
         <router-view/>
     </el-container>
 </template>
+
+<script>
+    import {mapGetters} from 'vuex'
+
+    export default {
+        computed: mapGetters({
+            cartCounts: 'cart/cartCount'
+        })
+    }
+</script>
 
 <style>
     #app {

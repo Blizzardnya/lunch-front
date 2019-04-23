@@ -5,7 +5,6 @@ const state = {
 };
 
 const getters = {
-    // cartProducts: state => {
     cartProducts: (state, getters, rootState) => {
         return state.added.map(({id, quantity}) => {
             const product = rootState.products.products.find(p => p.id === id)
@@ -15,6 +14,9 @@ const getters = {
                 quantity
             }
         })
+    },
+    cartCount: state => {
+        return state.added.reduce((accum, item) => accum + item.quantity, 0)
     }
 };
 

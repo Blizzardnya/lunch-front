@@ -42,8 +42,8 @@
             }),
             total() {
                 return this.products.reduce((total, p) => {
-                    return total + p.price * p.quantity
-                }, 0)
+                    return total + (p.price * p.quantity)
+                }, 0).toFixed(2)
             }
         },
         methods: {

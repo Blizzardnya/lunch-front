@@ -28,30 +28,14 @@
         // },
         mounted() {
             this.GET_PRODUCTS()
-            // this.$store.dispatch('products/GET_PRODUCTS')
         },
         computed: mapGetters({
             products: 'products/allProducts',
             // length: 'getNumberOfProducts'
         }),
-        // beforeRouteUpdate(to, from, next){
-        //     next()
-        //     this.getProductsList()
-        // },
-        methods:
-            {
-            // getProductsList(){
-            //     axios.get('http://127.0.0.1:8000/api/v1/cafe/product', {
-            //         params: {category:this.$route.params.id}
-            //     })
-            //     .then(response => (
-            //         // this.products = response.data.data.products
-            //         this.addAllProducts(response.data.data.products)
-            //     ))
-            //
-            // },
-                ...mapActions('products', ['GET_PRODUCTS']),
-                ...mapActions('cart', ['addToCart'])
+        methods: {
+            ...mapActions('products', ['GET_PRODUCTS']),
+            ...mapActions('cart', ['addToCart'])
         }
     }
 </script>

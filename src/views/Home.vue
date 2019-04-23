@@ -20,8 +20,9 @@
 
 <script>
     // @ is an alias to /src
-    import axios from 'axios'
+    // import axios from 'axios'
     // import Products from "../components/Products";
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: 'Home',
@@ -32,8 +33,9 @@
             }
         },
         created() {
-            axios.get('http://127.0.0.1:8000/api/v1/cafe/category')
-                .then(response => (this.categories = response.data.data.categories))
+            // axios.get('http://127.0.0.1:8000/api/v1/cafe/category')
+            //     .then(response => (this.categories = response.data.data.categories))
+            ..mapActions
         },
         methods: {
             getProducts(id) {

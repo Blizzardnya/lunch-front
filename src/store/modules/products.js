@@ -3,19 +3,19 @@ import * as types from "../mutation-types"
 
 
 const state = {
-    all: []
+    products: []
 };
 
 const getters = {
     allProducts: state => {
-        return state.all
+        return state.products
     },
-    getNumberOfProducts: state => (state.all) ? state.all.length : 0,
+    getNumberOfProducts: state => (state.products) ? state.products.length : 0,
 };
 
 const mutations = {
     [types.SET_PRODUCTS](state, {products}) {
-        state.all = products
+        state.products = products
     }
 };
 

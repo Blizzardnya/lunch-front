@@ -8,7 +8,7 @@ const getters = {
     // cartProducts: state => {
     cartProducts: (state, getters, rootState) => {
         return state.added.map(({id, quantity}) => {
-            const product = rootState.products.all.find(p => p.id === id)
+            const product = rootState.products.products.find(p => p.id === id)
             return {
                 name: product.name,
                 price: product.price,

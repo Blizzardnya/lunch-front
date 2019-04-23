@@ -1,35 +1,34 @@
 <template>
-    <div class="cart">
-        <h1 class="title">Your Cart</h1>
+    <el-main class="cart">
+        <h1>Корзина</h1>
         <p v-show="!products.length">
-            <i>Your cart is empty!</i>
-            <router-link to="/">Go shopping</router-link>
+            <i>Ваша корзина пуста!</i><br>
+            <router-link to="/">Продолжить покупки</router-link>
         </p>
-        <table class="table is-striped" v-show="products.length">
-            <thead>
-            <tr>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Quantity</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="p in products">
-                <td>{{ p.name }}</td>
-                <td>${{ p.price }}</td>
-                <td>{{ p.quantity }}</td>
-            </tr>
-            <tr>
-                <td><b>Total:</b></td>
-                <td></td>
-                <td><b>${{ total }}</b></td>
-            </tr>
-            </tbody>
-        </table>
-        <p>
-            <button v-show="products.length" class='button is-primary' @click='checkout'>Checkout</button>
-        </p>
-    </div>
+        <el-table
+                v-show="products.length"
+                :data="products"
+                style="width: 100%">
+            <el-table-column
+                    prop="name"
+                    label="Наинование">
+            </el-table-column>
+            <el-table-column
+                    prop="price"
+                    sortable
+                    label="Цена">
+            </el-table-column>
+            <el-table-column
+                    prop="quantity"
+                    sortable
+                    label="Кол-во">
+            </el-table-column>
+        </el-table>
+        <el-row>
+            <h3>Итого: {{ total }} р.</h3>
+            <el-button v-show="products.length" type="success" @click='checkout'>Рассчёт</el-button>
+        </el-row>
+    </el-main>
 </template>
 
 <script>
@@ -39,7 +38,7 @@
         name: "Cart",
         computed: {
             ...mapGetters({
-                products: 'cartProducts'
+                products: 'cart/cartProducts'
             }),
             total() {
                 return this.products.reduce((total, p) => {

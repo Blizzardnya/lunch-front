@@ -1,8 +1,15 @@
 import * as types from '../mutation-types'
 
-const state = {
-    added: []
+const getDefaultState = () => {
+    return{
+        added: []
+    }
 };
+
+// const state = {
+//     added: []
+// };
+const state = getDefaultState();
 
 const getters = {
     cartProducts: (state, getters, rootState) => {
@@ -17,7 +24,7 @@ const getters = {
     },
     cartCount: state => {
         return state.added.reduce((accum, item) => accum + item.quantity, 0)
-    }
+    },
 };
 
 const mutations = {
@@ -33,6 +40,9 @@ const mutations = {
             record.quantity++
         }
     },
+    resetState (state) {
+        Object.assign(state, getDefaultState())
+    }
 };
 
 const actions = {
@@ -41,6 +51,9 @@ const actions = {
             id: product.id
         })
     },
+    resetCart ({commit}) {
+        commit('resetState')
+    }
 };
 
 export default {
@@ -48,5 +61,5 @@ export default {
     state,
     getters,
     mutations,
-    actions,
+    actions
 };

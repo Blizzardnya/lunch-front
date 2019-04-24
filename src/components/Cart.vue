@@ -1,38 +1,40 @@
 <template>
     <el-main class="cart">
-        <h1>Корзина</h1>
-        <p v-show="!products.length">
+        <h1>Корзина покупок</h1>
+        <el-row v-if="!products.length">
             <i>Ваша корзина пуста!</i><br>
             <router-link to="/">Продолжить покупки</router-link>
-        </p>
-        <el-table
-                v-show="products.length"
+        </el-row>
+        <el-row v-else>
+            <el-table
                 :data="products"
                 style="width: 100%">
-            <el-table-column
-                    prop="name"
-                    label="Наинование">
-            </el-table-column>
-            <el-table-column
-                    prop="price"
-                    sortable
-                    label="Цена">
-            </el-table-column>
-            <el-table-column
-                    prop="quantity"
-                    sortable
-                    label="Кол-во">
-            </el-table-column>
-        </el-table>
-        <el-row>
-            <h3>Итого: {{ total }} р.</h3>
-            <el-button v-show="products.length" type="success" @click='checkout'>Рассчёт</el-button>
+                <el-table-column
+                        prop="name"
+                        label="Наинование">
+                </el-table-column>
+                <el-table-column
+                        prop="price"
+                        sortable
+                        label="Цена">
+                </el-table-column>
+                <el-table-column
+                        prop="quantity"
+                        sortable
+                        label="Кол-во">
+                </el-table-column>
+            </el-table>
+            <el-row>
+                <h3>Итого: {{ total }} р.</h3>
+                <el-button type="success" @click='checkout'>Рассчёт</el-button>
+                <el-button type="danger" @click="resetCart()">Очистить корзину</el-button>
+            </el-row>
         </el-row>
     </el-main>
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
 
     export default {
         name: "Cart",
@@ -49,7 +51,8 @@
         methods: {
             checkout() {
                 alert('Pay us $' + this.total)
-            }
+            },
+            ...mapActions('cart',['resetCart'])
         }
     }
 </script>

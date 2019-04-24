@@ -22,7 +22,7 @@
         name: 'Home',
         components: {Products},
         mounted() {
-            this.GET_CATEGORIES()
+            // this.GET_CATEGORIES()
         },
         computed: mapGetters({
             categories: 'categories/allCategories'
@@ -31,7 +31,7 @@
             getProducts(id) {
                 this.$router.push({name: 'products', params: {id: id}})
             },
-            ...mapActions('categories', ['GET_CATEGORIES'])
+            // ...mapActions('categories', ['GET_CATEGORIES'])
         }
     }
 </script>

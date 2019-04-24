@@ -1,7 +1,7 @@
 <template>
     <el-container id="app">
         <el-header>
-            <el-menu :router="true" mode="horizontal" >
+            <el-menu :router="true" mode="horizontal">
                 <el-menu-item index="/">
                     Кафе
                 </el-menu-item>
@@ -10,9 +10,8 @@
                 </el-menu-item>
                 <el-menu-item index="/cart">
                     <i class="el-icon-goods"></i>
-                    Корзина ({{cartCounts}})
+                    Корзина <el-tag type="info" size="small">{{cartCounts}}</el-tag>
                 </el-menu-item>
-
             </el-menu>
             <!--<router-link to="/">Home</router-link> |-->
             <!--<router-link to="/about">About</router-link>-->
@@ -22,12 +21,20 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
 
     export default {
+        mounted() {
+            this.GET_PRODUCTS();
+            this.GET_CATEGORIES();
+        },
         computed: mapGetters({
             cartCounts: 'cart/cartCount'
-        })
+        }),
+        methods: {
+            ...mapActions('products', ['GET_PRODUCTS']),
+            ...mapActions('categories', ['GET_CATEGORIES'])
+        }
     }
 </script>
 

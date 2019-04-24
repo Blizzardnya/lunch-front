@@ -12,8 +12,11 @@
                     <i class="el-icon-goods"></i>
                     Корзина <el-tag type="info" size="small">{{cartCounts}}</el-tag>
                 </el-menu-item>
-                <el-menu-item index="/login">
+                <el-menu-item index="/login" v-if="!isLogin">
                     Вход
+                </el-menu-item>
+                <el-menu-item v-else @click="LOGOUT">
+                    Выход
                 </el-menu-item>
             </el-menu>
             <!--<router-link to="/">Home</router-link> |-->
@@ -32,11 +35,13 @@
             this.GET_CATEGORIES();
         },
         computed: mapGetters({
-            cartCounts: 'cart/cartCount'
+            cartCounts: 'cart/cartCount',
+            isLogin: 'login/isLogin'
         }),
         methods: {
             ...mapActions('products', ['GET_PRODUCTS']),
-            ...mapActions('categories', ['GET_CATEGORIES'])
+            ...mapActions('categories', ['GET_CATEGORIES']),
+            ...mapActions('login', ['LOGOUT'])
         }
     }
 </script>

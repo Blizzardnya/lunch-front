@@ -1,11 +1,16 @@
 import * as types from '../mutation-types'
 import Axios from "axios";
 
+var qs = require('qs');
 
-const state = {
-    login: false,
-    token: ''
+const getDefaultState = () => {
+    return {
+        login: false,
+        token: ''
+    }
 };
+
+const state = getDefaultState();
 
 const getters = {
     isLogin: state => {
@@ -16,35 +21,35 @@ const getters = {
 const mutations = {
     [types.LOGIN](state, {token}) {
         state.token = token;
+        state.login = true;
     },
+    [types.LOGOUT](state) {
+        Object.assign(state, getDefaultState())
+    }
 };
 
 const actions = {
     LOGIN: async (context, authData) => {
-        await Axios({
-            method:'post',
-            url: 'http://127.0.0.1:8000/auth/token/create/',
-            headers: {
-                'Content-Type': 'application/vnd.api+json'
-            },
-            data:{
-                username: authData.username,
-                password: authData.password
-            }
-            })
+        await Axios.post('http://127.0.0.1:8000/auth/token/create/',
+            qs.stringify({
+                'username': authData.username,
+                'password': authData.password
+            }))
             .then(response => {
                 context.commit(types.LOGIN, {
-                    token: response.data.attributes.auth_token
-                })
+                    token: response.data.data.attributes.auth_token
+                });
             })
             .catch(error => {
-                console.log(error)
+                if (error.response)
+                if (error.response.status === 400) {
+                    alert('Логин или пароль введён неверно')
+                }
             })
-
-        // context.commit(types.LOGIN, {
-        //     token: data.attributes.auth_token
-        // })
     },
+    LOGOUT({commit}) {
+        commit('LOGOUT')
+    }
 };
 
 export default {

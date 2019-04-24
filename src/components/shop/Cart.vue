@@ -26,8 +26,8 @@
             </el-table>
             <el-row>
                 <h3>Итого: {{ total }} р.</h3>
-                <el-button type="success" @click='checkout'>Рассчёт</el-button>
-                <el-button type="danger" @click="resetCart()">Очистить корзину</el-button>
+                <el-button type="success" @click="checkout" icon="el-icon-tickets">Рассчёт</el-button>
+                <el-button type="danger" @click="resetCart()" icon="el-icon-delete">Очистить корзину</el-button>
             </el-row>
         </el-row>
     </el-main>

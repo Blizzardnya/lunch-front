@@ -12,6 +12,9 @@
                     <i class="el-icon-goods"></i>
                     Корзина <el-tag type="info" size="small">{{cartCounts}}</el-tag>
                 </el-menu-item>
+                <el-menu-item index="/login">
+                    Вход
+                </el-menu-item>
             </el-menu>
             <!--<router-link to="/">Home</router-link> |-->
             <!--<router-link to="/about">About</router-link>-->

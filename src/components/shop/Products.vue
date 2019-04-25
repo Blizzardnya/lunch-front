@@ -21,15 +21,11 @@
     export default {
         name: "Products",
         props: {id: Number},
-        created() {
-            // this.GET_PRODUCTS()
-        },
         computed: mapGetters({
             products: 'products/allProducts',
             length: 'products/getNumberOfProducts'
         }),
         methods: {
-            // ...mapActions('products', ['GET_PRODUCTS']),
             ...mapActions('cart', ['addToCart'])
         }
     }

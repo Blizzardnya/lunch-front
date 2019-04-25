@@ -26,7 +26,9 @@
             </el-table>
             <el-row>
                 <h3>Итого: {{ total }} р.</h3>
-                <el-button type="success" @click="checkout" icon="el-icon-tickets">Рассчёт</el-button>
+                <p v-show="!isLogin">Войдите в приложение для оформления заказа</p>
+                <el-button v-if="!isLogin" type="success" icon="el-icon-tickets" disabled>Рассчёт</el-button>
+                <el-button v-else type="success" @click="checkout" icon="el-icon-tickets">Рассчёт</el-button>
                 <el-button type="danger" @click="resetCart()" icon="el-icon-delete">Очистить корзину</el-button>
             </el-row>
         </el-row>
@@ -40,7 +42,8 @@
         name: "Cart",
         computed: {
             ...mapGetters({
-                products: 'cart/cartProducts'
+                products: 'cart/cartProducts',
+                isLogin: 'login/isLogin'
             }),
             total() {
                 return this.products.reduce((total, p) => {

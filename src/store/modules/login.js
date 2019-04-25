@@ -1,12 +1,14 @@
 import * as types from '../mutation-types'
 import Axios from "axios";
+import {APP_LOCATION} from '../index'
 
 var qs = require('qs');
 
 const getDefaultState = () => {
     return {
         login: false,
-        token: ''
+        token: '',
+        username: ''
     }
 };
 
@@ -19,9 +21,10 @@ const getters = {
 };
 
 const mutations = {
-    [types.LOGIN](state, {token}) {
+    [types.LOGIN](state, {token, username}) {
         state.token = token;
         state.login = true;
+        state.username = username;
     },
     [types.LOGOUT](state) {
         Object.assign(state, getDefaultState())
@@ -30,14 +33,15 @@ const mutations = {
 
 const actions = {
     LOGIN: async (context, authData) => {
-        await Axios.post('http://127.0.0.1:8000/auth/token/create/',
+        await Axios.post(APP_LOCATION + 'auth/token/create/',
             qs.stringify({
                 'username': authData.username,
                 'password': authData.password
             }))
             .then(response => {
                 context.commit(types.LOGIN, {
-                    token: response.data.data.attributes.auth_token
+                    token: response.data.data.attributes.auth_token,
+                    username: authData.username
                 });
             })
             .catch(error => {

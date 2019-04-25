@@ -8,15 +8,15 @@
                 <el-menu-item index="/about">
                     О нас
                 </el-menu-item>
-                <el-menu-item index="/cart">
-                    <i class="el-icon-goods"></i>
-                    Корзина <el-tag type="info" size="small">{{cartCounts}}</el-tag>
-                </el-menu-item>
-                <el-menu-item index="/login" v-if="!isLogin">
+                <el-menu-item style="float: right;" index="/login" v-if="!isLogin">
                     Вход
                 </el-menu-item>
-                <el-menu-item v-else @click="LOGOUT">
+                <el-menu-item style="float: right;" v-else @click="LOGOUT">
                     Выход
+                </el-menu-item>
+                <el-menu-item style="float: right;" index="/cart">
+                    <i class="el-icon-goods"></i>
+                    Корзина <el-tag type="info" size="small">{{cartCounts}}</el-tag>
                 </el-menu-item>
             </el-menu>
             <!--<router-link to="/">Home</router-link> |-->

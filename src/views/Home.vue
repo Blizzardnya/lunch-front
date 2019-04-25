@@ -6,7 +6,6 @@
         </el-main>
         <el-aside width="25%" style="margin-top: 1%;">
             <el-menu>
-                <!--<el-menu-item v-for="category in categories" :key="category.id" @click="getProducts(category.id)">-->
                 <el-menu-item v-for="category in categories" :key="category.id" @click="filterProducts(category.id)">
                     <span slot="title">{{ category.name }}</span>
                 </el-menu-item>
@@ -26,18 +25,11 @@
     export default {
         name: 'Home',
         components: {Products},
-        mounted() {
-            // this.GET_CATEGORIES()
-        },
         computed: mapGetters({
             categories: 'categories/allCategories'
         }),
         methods: {
-            getProducts(id) {
-                this.$router.push({name: 'products', params: {id: id}})
-            },
             ...mapActions('products', ['filterProducts'])
-            // ...mapActions('categories', ['GET_CATEGORIES'])
         }
     }
 </script>

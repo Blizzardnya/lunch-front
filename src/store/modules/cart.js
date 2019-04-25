@@ -6,15 +6,12 @@ const getDefaultState = () => {
     }
 };
 
-// const state = {
-//     added: []
-// };
 const state = getDefaultState();
 
 const getters = {
     cartProducts: (state, getters, rootState) => {
         return state.added.map(({id, quantity}) => {
-            const product = rootState.products.products.find(p => p.id === id)
+            const product = rootState.products.products.find(p => p.id === id);
             return {
                 name: product.name,
                 price: product.price,
@@ -29,7 +26,7 @@ const getters = {
 
 const mutations = {
     [types.ADD_TO_CART](state, {id}) {
-        const record = state.added.find(p => p.id === id)
+        const record = state.added.find(p => p.id === id);
 
         if (!record) {
             state.added.push({

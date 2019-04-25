@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Products from './components/shop/Products.vue';
 import Cart from './components/shop/Cart.vue';
 import Login from './components/Login.vue'
+import Account from './components/Account.vue';
 
 Vue.use(Router);
 
@@ -36,6 +37,11 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: Login
+        },
+        {
+            path: '/account',
+            name: 'account',
+            component: Account
         }
     ]
 })

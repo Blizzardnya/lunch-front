@@ -15,7 +15,7 @@
                     <el-menu-item style="float: right;" @click="LOGOUT">
                         Выход
                     </el-menu-item>
-                    <el-menu-item style="float: right;" @click="GET_ORDERS">
+                    <el-menu-item style="float: right;" index="/account">
                         Аккаунт
                     </el-menu-item>
                 </template>
@@ -46,8 +46,7 @@
         methods: {
             ...mapActions('products', ['GET_PRODUCTS']),
             ...mapActions('categories', ['GET_CATEGORIES']),
-            ...mapActions('login', ['LOGOUT']),
-            ...mapActions('account', ['GET_ORDERS'])
+            ...mapActions('login', ['LOGOUT'])
         }
     }
 </script>

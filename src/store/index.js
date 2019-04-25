@@ -4,6 +4,7 @@ import products from './modules/products'
 import cart from './modules/cart'
 import categories from './modules/categories'
 import login from './modules/login'
+import account from './modules/account'
 import createPersistedState from 'vuex-persistedstate'
 
 export const APP_LOCATION = 'http://127.0.0.1:8000/';
@@ -19,7 +20,8 @@ export default new Vuex.Store({
         categories,
         products,
         cart,
-        login
+        login,
+        account
     },
     plugins: [createPersistedState()]
 })

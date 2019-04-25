@@ -11,9 +11,14 @@
                 <el-menu-item style="float: right;" index="/login" v-if="!isLogin">
                     Вход
                 </el-menu-item>
-                <el-menu-item style="float: right;" v-else @click="LOGOUT">
-                    Выход
-                </el-menu-item>
+                <template v-else>
+                    <el-menu-item style="float: right;" @click="LOGOUT">
+                        Выход
+                    </el-menu-item>
+                    <el-menu-item style="float: right;" @click="GET_ORDERS">
+                        Аккаунт
+                    </el-menu-item>
+                </template>
                 <el-menu-item style="float: right;" index="/cart">
                     <i class="el-icon-goods"></i>
                     Корзина <el-tag type="info" size="small">{{cartCounts}}</el-tag>
@@ -41,7 +46,8 @@
         methods: {
             ...mapActions('products', ['GET_PRODUCTS']),
             ...mapActions('categories', ['GET_CATEGORIES']),
-            ...mapActions('login', ['LOGOUT'])
+            ...mapActions('login', ['LOGOUT']),
+            ...mapActions('account', ['GET_ORDERS'])
         }
     }
 </script>

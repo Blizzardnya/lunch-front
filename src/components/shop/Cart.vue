@@ -26,8 +26,10 @@
             </el-table>
             <el-row>
                 <h3>Итого: {{ total }} р.</h3>
-                <p v-show="!isLogin">Войдите в приложение для оформления заказа</p>
-                <el-button v-if="!isLogin" type="success" icon="el-icon-tickets" disabled>Рассчёт</el-button>
+                <template v-if="!isLogin">
+                    <p>Войдите в приложение для оформления заказа</p>
+                    <el-button type="success" icon="el-icon-tickets" disabled>Рассчёт</el-button>
+                </template>
                 <el-button v-else type="success" @click="checkout" icon="el-icon-tickets">Рассчёт</el-button>
                 <el-button type="danger" @click="resetCart()" icon="el-icon-delete">Очистить корзину</el-button>
             </el-row>

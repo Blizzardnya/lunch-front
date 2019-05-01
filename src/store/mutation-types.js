@@ -14,3 +14,4 @@ export const LOGOUT = 'LOGOUT';
 
 //Account
 export const SET_ORDERS  = 'SET_ORDERS';
+export const RESET_ACCOUNT  = 'RESET_ACCOUNT';

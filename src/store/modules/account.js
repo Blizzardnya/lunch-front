@@ -20,6 +20,9 @@ const getters = {
 const mutations = {
     [types.SET_ORDERS](state, {orders}){
         state.orders = orders
+    },
+    [types.RESET_ACCOUNT] (state) {
+        Object.assign(state, getDefaultState())
     }
 };
 
@@ -39,7 +42,10 @@ const actions = {
         context.commit(types.SET_ORDERS, {
             orders: data.data.orders
         })
-    }
+    },
+    RESET_ACCOUNT ({commit}) {
+        commit('RESET_ACCOUNT')
+    },
 };
 
 export default {

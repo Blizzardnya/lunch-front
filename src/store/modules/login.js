@@ -52,7 +52,8 @@ const actions = {
             })
     },
     LOGOUT({commit}) {
-        commit('LOGOUT')
+        commit('LOGOUT');
+        commit('account/RESET_ACCOUNT', null, {root: true});
     }
 };
 

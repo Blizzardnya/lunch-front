@@ -30,7 +30,7 @@
                     <p>Войдите в приложение для оформления заказа</p>
                     <el-button type="success" icon="el-icon-tickets" disabled>Рассчёт</el-button>
                 </template>
-                <el-button v-else type="success" @click="checkout" icon="el-icon-tickets">Рассчёт</el-button>
+                <el-button v-else type="success" @click="confirmOrder" icon="el-icon-tickets">Рассчёт</el-button>
                 <el-button type="danger" @click="resetCart()" icon="el-icon-delete">Очистить корзину</el-button>
             </el-row>
         </el-row>
@@ -57,7 +57,7 @@
             checkout() {
                 alert('Pay us $' + this.total)
             },
-            ...mapActions('cart',['resetCart'])
+            ...mapActions('cart',['resetCart', 'confirmOrder'])
         }
     }
 </script>

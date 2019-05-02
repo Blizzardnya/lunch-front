@@ -1,6 +1,7 @@
 import * as types from '../mutation-types'
 import Axios from "axios";
 import {APP_LOCATION} from "../index";
+import router from'../../router';
 
 const getDefaultState = () => {
     return {
@@ -70,7 +71,8 @@ const actions = {
             .then(response => {
                 if (response.status === 201) {
                     context.commit('resetState');
-                    alert('Ваш заказ успешно принят')
+                    alert('Ваш заказ успешно принят');
+                    router.push({name: "account"})
                 } else {
                     alert('Произошла ошибка')
                 }

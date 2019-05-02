@@ -1,6 +1,8 @@
 import * as types from '../mutation-types'
 import Axios from "axios";
 import {APP_LOCATION} from '../index'
+import router from'../../router'
+
 
 var qs = require('qs');
 
@@ -43,6 +45,7 @@ const actions = {
                     token: response.data.data.attributes.auth_token,
                     username: authData.username
                 });
+                router.push({name: "home"})
             })
             .catch(error => {
                 if (error.response)
@@ -54,6 +57,9 @@ const actions = {
     LOGOUT({commit}) {
         commit('LOGOUT');
         commit('account/RESET_ACCOUNT', null, {root: true});
+        if (router.currentRoute.name === 'account'){
+            router.push({name: "home"})
+        }
     }
 };
 

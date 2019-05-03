@@ -40,6 +40,10 @@ const mutations = {
             record.quantity++
         }
     },
+    [types.DELETE_FROM_CART](state, {index}){
+        // state.added.find(p => p.id === id).delete()
+        state.added = state.added.filter((_, i) => i !== index)
+    },
     resetState(state) {
         Object.assign(state, getDefaultState())
     }
@@ -49,6 +53,11 @@ const actions = {
     addToCart({commit}, product) {
         commit(types.ADD_TO_CART, {
             id: product.id
+        })
+    },
+    deleteFromCart({commit}, id){
+        commit(types.DELETE_FROM_CART, {
+            index: id
         })
     },
     resetCart({commit}) {

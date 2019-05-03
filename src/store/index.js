@@ -7,7 +7,8 @@ import login from './modules/login'
 import account from './modules/account'
 import createPersistedState from 'vuex-persistedstate'
 
-export const APP_LOCATION = 'http://127.0.0.1:8000/';
+// export const APP_LOCATION = 'http://127.0.0.1:8000/';
+export const APP_LOCATION = 'https://lunch-back.herokuapp.com/';
 
 Vue.use(Vuex);
 

@@ -1,14 +1,14 @@
 <template>
     <el-main class="cart">
-        <h1>Корзина покупок</h1>
+        <h1>Корзина покупок, количество блюд: {{cartCount}}</h1>
         <el-row v-if="!products.length">
             <i>Ваша корзина пуста!</i><br>
             <router-link to="/">Продолжить покупки</router-link>
         </el-row>
         <el-row v-else>
             <el-table
-                :data="products"
-                style="width: 100%">
+                    :data="products"
+                    style="width: 100%">
                 <el-table-column
                         prop="name"
                         label="Наинование">
@@ -22,6 +22,16 @@
                         prop="quantity"
                         sortable
                         label="Кол-во">
+                </el-table-column>
+                <el-table-column
+                        label="">
+                    <template slot-scope="scope">
+                        <el-button
+                                size="mini"
+                                type="danger"
+                                @click="deleteFromCart(scope.$index)">Удалить
+                        </el-button>
+                    </template>
                 </el-table-column>
             </el-table>
             <el-row>
@@ -45,7 +55,8 @@
         computed: {
             ...mapGetters({
                 products: 'cart/cartProducts',
-                isLogin: 'login/isLogin'
+                isLogin: 'login/isLogin',
+                cartCount: 'cart/cartCount'
             }),
             total() {
                 return this.products.reduce((total, p) => {
@@ -57,7 +68,7 @@
             checkout() {
                 alert('Pay us $' + this.total)
             },
-            ...mapActions('cart',['resetCart', 'confirmOrder'])
+            ...mapActions('cart', ['resetCart', 'confirmOrder', 'deleteFromCart'])
         }
     }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <el-main class="cart">
-        <h1>Корзина покупок, количество блюд: {{cartCount}}</h1>
+        <h1>Ваш заказ:</h1>
         <el-row v-if="!products.length">
             <i>Ваша корзина пуста!</i><br>
             <router-link to="/">Продолжить покупки</router-link>
@@ -19,12 +19,24 @@
                         label="Цена">
                 </el-table-column>
                 <el-table-column
-                        prop="quantity"
-                        sortable
-                        label="Кол-во">
+                        label="Кол-во"
+                        width="90px"
+                >
+                    <template slot-scope="scope">
+                        <el-select v-model="scope.row.quantity" @change="updateQuantityCart(scope.row)" placeholder="Select">
+                            <el-option
+                                    v-for="item in options"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </template>
                 </el-table-column>
                 <el-table-column
-                        label="">
+                        label=""
+                        align="center"
+                >
                     <template slot-scope="scope">
                         <el-button
                                 size="mini"
@@ -52,11 +64,30 @@
 
     export default {
         name: "Cart",
+        data() {
+            return {
+                options: [{
+                    value: '1',
+                    label: '1'
+                }, {
+                    value: '2',
+                    label: '2'
+                }, {
+                    value: '3',
+                    label: '3'
+                }, {
+                    value: '4',
+                    label: '4'
+                }, {
+                    value: '5',
+                    label: '5'
+                }]
+            }
+        },
         computed: {
             ...mapGetters({
                 products: 'cart/cartProducts',
-                isLogin: 'login/isLogin',
-                cartCount: 'cart/cartCount'
+                isLogin: 'login/isLogin'
             }),
             total() {
                 return this.products.reduce((total, p) => {
@@ -65,10 +96,7 @@
             }
         },
         methods: {
-            checkout() {
-                alert('Pay us $' + this.total)
-            },
-            ...mapActions('cart', ['resetCart', 'confirmOrder', 'deleteFromCart'])
+            ...mapActions('cart', ['resetCart', 'confirmOrder', 'deleteFromCart', 'updateQuantityCart'])
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-row :gutter="12">
-            <el-col :span="8" v-for="product in products" :key="product.id">
+            <el-col :xs="24" :sm="8" :md="6" :lg="6" :xl="4" v-for="product in products" :key="product.id">
                 <el-card shadow="hover" :body-style="{ padding: '10px' }">
                     <div slot="header">
                         <h1>{{product.name}}</h1>

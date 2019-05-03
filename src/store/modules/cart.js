@@ -16,6 +16,7 @@ const getters = {
         return state.added.map(({id, quantity}) => {
             const product = rootState.products.products.find(p => p.id === id);
             return {
+                id: product.id,
                 name: product.name,
                 price: product.price,
                 quantity
@@ -44,6 +45,11 @@ const mutations = {
         // state.added.find(p => p.id === id).delete()
         state.added = state.added.filter((_, i) => i !== index)
     },
+    [types.UPDATE_QUANTITY_CART](state, {row}){
+         const record = state.added.find(p => p.id === row.id);
+
+         record.quantity = Number(row.quantity)
+    },
     resetState(state) {
         Object.assign(state, getDefaultState())
     }
@@ -58,6 +64,11 @@ const actions = {
     deleteFromCart({commit}, id){
         commit(types.DELETE_FROM_CART, {
             index: id
+        })
+    },
+    updateQuantityCart({commit}, row){
+        commit(types.UPDATE_QUANTITY_CART, {
+            row: row
         })
     },
     resetCart({commit}) {

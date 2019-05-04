@@ -1,7 +1,7 @@
 import * as types from '../mutation-types'
 import Axios from "axios";
 import {APP_LOCATION} from '../index'
-import router from'../../router'
+import router from '../../router'
 
 
 var qs = require('qs');
@@ -49,17 +49,37 @@ const actions = {
             })
             .catch(error => {
                 if (error.response)
-                if (error.response.status === 400) {
-                    alert('Логин или пароль введён неверно')
-                }
+                    if (error.response.status === 400) {
+                        alert('Логин или пароль введён неверно')
+                    }
             })
     },
-    LOGOUT({commit}) {
-        commit('LOGOUT');
-        commit('account/RESET_ACCOUNT', null, {root: true});
-        if (router.currentRoute.name === 'account'){
-            router.push({name: "home"})
-        }
+    LOGOUT: async (context) => {
+        await Axios({
+            method: 'POST',
+            headers: {
+                Authorization: 'Token ' + context.rootState.login.token
+            },
+            url: APP_LOCATION + 'auth/token/destroy',
+        })
+            .then(response => {
+                if (response.status === 201) {
+                    context.commit('LOGOUT');
+                    context.commit('account/RESET_ACCOUNT', null, {root: true});
+                    if (router.currentRoute.name === 'account'){
+                        router.push({name: "home"})
+                    }
+                }
+                else {
+                    alert('Error')
+                }
+            })
+            .catch(error => {
+                if (error.response)
+                    if (error.response.status === 400) {
+                        alert('Error')
+                    }
+            })
     }
 };
 

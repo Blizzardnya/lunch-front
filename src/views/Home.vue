@@ -4,7 +4,7 @@
             <!--<slot></slot>-->
             <Products></Products>
         </el-main>
-        <el-aside width="25%" style="margin-top: 1%;">
+        <el-aside width="150px">
             <el-menu>
                 <el-menu-item v-for="category in categories" :key="category.id" @click="filterProducts(category.id)">
                     <span slot="title">{{ category.name }}</span>
@@ -35,7 +35,11 @@
 </script>
 
 <style scoped>
-    .el-menu-item{
+    .el-menu-item {
         border: 1px solid #ebeef5;
+    }
+
+    .el-aside {
+        margin-top: 25px;
     }
 </style>

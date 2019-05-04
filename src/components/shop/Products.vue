@@ -33,6 +33,6 @@
 
 <style scoped>
     .el-col {
-        margin-top: 1%;
+        margin-top: 10px;
     }
 </style>

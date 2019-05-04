@@ -62,16 +62,12 @@ const actions = {
             },
             url: APP_LOCATION + 'auth/token/destroy',
         })
+            // eslint-disable-next-line
             .then(response => {
-                if (response.status === 201) {
-                    context.commit('LOGOUT');
-                    context.commit('account/RESET_ACCOUNT', null, {root: true});
-                    if (router.currentRoute.name === 'account'){
-                        router.push({name: "home"})
-                    }
-                }
-                else {
-                    alert('Error')
+                context.commit('LOGOUT');
+                context.commit('account/RESET_ACCOUNT', null, {root: true});
+                if (router.currentRoute.name === 'account'){
+                    router.push({name: "home"})
                 }
             })
             .catch(error => {

@@ -1,45 +1,49 @@
 <template>
-    <el-container>
-        <el-main class="home">
-            <!--<slot></slot>-->
-            <Products></Products>
-        </el-main>
-        <el-aside width="150px">
-            <el-menu>
-                <el-menu-item v-for="category in categories" :key="category.id" @click="filterProducts(category.id)">
-                    <span slot="title">{{ category.name }}</span>
-                </el-menu-item>
-                <el-menu-item @click="filterProducts(0)">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">Все</span>
-                </el-menu-item>
-            </el-menu>
-        </el-aside>
-    </el-container>
+  <el-container>
+    <el-main class="home">
+      <!--<slot></slot>-->
+      <Products></Products>
+    </el-main>
+    <el-aside width="150px">
+      <el-menu>
+        <el-menu-item
+          v-for="category in categories"
+          :key="category.id"
+          @click="filterProducts(category.id)"
+        >
+          <span slot="title">{{ category.name }}</span>
+        </el-menu-item>
+        <el-menu-item @click="filterProducts(0)">
+          <i class="el-icon-menu"></i>
+          <span slot="title">Все</span>
+        </el-menu-item>
+      </el-menu>
+    </el-aside>
+  </el-container>
 </template>
 
 <script>
-    import Products from "../components/shop/Products";
-    import {mapGetters, mapActions} from 'vuex'
+import Products from "../components/shop/Products";
+import { mapGetters, mapActions } from "vuex";
 
-    export default {
-        name: 'Home',
-        components: {Products},
-        computed: mapGetters({
-            categories: 'categories/allCategories'
-        }),
-        methods: {
-            ...mapActions('products', ['filterProducts'])
-        }
-    }
+export default {
+  name: "Home",
+  components: { Products },
+  computed: mapGetters({
+    categories: "categories/allCategories",
+  }),
+  methods: {
+    ...mapActions("products", ["filterProducts"]),
+  },
+};
 </script>
 
 <style scoped>
-    .el-menu-item {
-        border: 1px solid #ebeef5;
-    }
+.el-menu-item {
+  border: 1px solid #ebeef5;
+}
 
-    .el-aside {
-        margin-top: 25px;
-    }
+.el-aside {
+  margin-top: 25px;
+}
 </style>

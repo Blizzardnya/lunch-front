@@ -35,7 +35,7 @@ const mutations = {
 const actions = {
   LOGIN: async (context, authData) => {
     await Axios.post(
-      APP_LOCATION + "auth/token/create/",
+      APP_LOCATION + "auth/token/login/",
       qs.stringify({
         username: authData.username,
         password: authData.password
@@ -61,7 +61,7 @@ const actions = {
       headers: {
         Authorization: "Token " + context.rootState.login.token
       },
-      url: APP_LOCATION + "auth/token/destroy"
+      url: APP_LOCATION + "auth/token/logout"
     })
       //    eslint-disable-next-line
       .then(response => {
